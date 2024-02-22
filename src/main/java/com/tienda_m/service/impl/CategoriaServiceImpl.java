@@ -1,4 +1,4 @@
-package com.tienda_m.impl;
+package com.tienda_m.service.impl;
 
 import com.tienda_m.dao.CategoriaDao;
 import com.tienda_m.domain.Categoria;
@@ -24,5 +24,24 @@ public class CategoriaServiceImpl implements CategoriaService {
         }
         
         return lista;
+    }
+
+    @Override
+    @Transactional
+    public Categoria getCategoria(Categoria categoria) {
+        //Busca en la tabla categoria el registro que tenga el idCategoria y si no lo encuentra devuelve nulo
+        return categoriaDao.findById(categoria.getIdCategoria()).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public void save(Categoria categoria) {
+        categoriaDao.save(categoria);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Categoria categoria) {
+        categoriaDao.delete(categoria);
     }
 }
