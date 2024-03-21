@@ -64,4 +64,25 @@ public class ProductoController {
         productoService.delete(producto);
         return "redirect:/producto/listado";
     }
+    
+    @GetMapping("/listado2")
+    public String listado2(Model model){
+        var lista = productoService.getProductos(false);
+        model.addAttribute("productos", lista);
+        return "/pruebas/listado2";
+    }
+    
+    @PostMapping("/query1")
+    public String consultaQuery1(
+            @RequestParam(value="precioInf")double precioInf, 
+            @RequestParam(value="precioSup")double precioSup, 
+            Model model){
+        
+        var lista=productoService.metodoJPA(precioInf, precioSup);
+        model.addAttribute("productos", lista);
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+    
 }
