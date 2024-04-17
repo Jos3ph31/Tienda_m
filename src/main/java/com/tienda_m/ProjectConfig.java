@@ -56,7 +56,7 @@ public class ProjectConfig implements WebMvcConfigurer{
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         
-        http.authorizeHttpRequests((request) ->request.requestMatchers("/","/login","/js/**","/webjars/**","/registro/**").permitAll().requestMatchers("/categoria/listado","/producto/listado").hasRole("VENDEDOR").requestMatchers("/categoria/nuevo","/categoria/modificar/**","/categoria/eliminar/**","/categoria/guardar","/producto/nuevo","/producto/modificar/**","/producto/eliminar/**","/producto/guardar","pruebas/**").hasRole("ADMIN").requestMatchers("/facturar/carrito").hasRole("USER")).formLogin((form) -> form.loginPage("/login").permitAll()).logout((logout) -> logout.permitAll());
+        http.authorizeHttpRequests((request) ->request.requestMatchers("/","/login","/js/**","/webjars/**","/registro/**", "/carrito/**").permitAll().requestMatchers("/categoria/listado","/producto/listado").hasRole("VENDEDOR").requestMatchers("/categoria/nuevo","/categoria/modificar/**","/categoria/eliminar/**","/categoria/guardar","/producto/nuevo","/producto/modificar/**","/producto/eliminar/**","/producto/guardar","pruebas/**").hasRole("ADMIN").requestMatchers("/facturar/carrito").hasRole("USER")).formLogin((form) -> form.loginPage("/login").permitAll()).logout((logout) -> logout.permitAll());
         
         return http.build();
     }
